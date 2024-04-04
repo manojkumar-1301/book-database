@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      padding: 20px;
+    }
+
+    .header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: 24px;
+      color: #333;
+      margin-left:30em;
+
+    }
+
+    .button a {
+      display: inline-block;
+      padding: 10px 20px;
+      background-image: linear-gradient(to right, #00c6fb, #005bea);
+      color: #ffffff;
+      font-size: 16px;
+      text-align: center;
+      text-decoration: none;
+      border-radius: 3px;
+      transition: background-image 0.3s ease;
+    }
+
+    .button a:hover {
+      background-image: linear-gradient(to right, #005bea, #00c6fb);
+    }
+
+    .tab {
+      width: 100%;
+      border-collapse: collapse;
+      background-color: #ffffff;
+    }
+
+    .tab th,
+    .tab td {
+      padding: 10px;
+      text-align: center;
+      border-bottom: 1px solid #dddddd;
+    }
+
+    .tab th {
+      font-weight: bold;
+      background-image: linear-gradient(to right, #e53935, #d81b60, #8e24aa);
+      color: #ffffff;
+    }
+
+    .tab tr:nth-child(even) {
+      background-image: linear-gradient(to right, #f3e5f5, #e1bee7);
+    }
+
+    .tab tr:hover {
+      background-image: linear-gradient(to right, #e1bee7, #f3e5f5);
+      cursor: pointer;
+    }
+     .but{
+       float:right;
+       margin-top:2em;
+     }
+  </style>
+
+
+</head>
+<body>
+
+<div class="header">
+<h1>ORDER DETAILS RECORD</h1>
+<div class="button">
+  <button><a href="/sbook" class="button">BOOK DETAILS</a></button>
+
+</div>
+</div>
+
+<table class="tab">
+    <th>BOOK ID</th>
+    <th>TOTAL COUNT</th>
+    <th>TOTAL PRICE</th>
+    <th>DELIVERY DATE</th>
+    <th>STATUS</th>
+    <th>CREATED BY</th>
+    <th>CREATED DATE</th>
+    <th>Edit</th>
+    <th>Delete</th>
+
+
+    {% for i in data %}
+    <tr onmouseover="this.style.backgroundColor='#f9fbe7';"
+      onmouseout="this.style.backgroundColor='';" style="transition: background-color 0.3s ease;" >
+        <td>{{ i.Book_Id.Book_Name }}</td>
+        <td>{{ i.Total_Count }}</td>
+        <td>{{ i.Total_Price }}</td>
+        <td>{{ i.Delivery_Date }}</td>
+        <td>{{ i.Status }}</td>
+        <td>{{ i.Created_By }}</td>
+        <td>{{ i.Created_Date }}</td>
+        <td><a  style="text-decoration:none"; href="{% url 'oedit' i.id %}" class="button">EDIT</a></td>
+        <td><a  style="text-decoration:none" href="{% url 'odelete' i.id %}" class="button">DELETE</a></td>
+    </tr>
+    {% endfor %}
+
+</table>
+<div class="but">
+<div class="button">
+  <button><a href="/add_order" class="button">ADD ORDER</a></button>
+</div>
+</div>
+</body>
+</html>
